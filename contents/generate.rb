@@ -11,9 +11,9 @@ end
 
 
 cmdLine=ENV['RD_CONFIG_MCO_COMMAND_LINE']
-f = IO.popen(cmdLine)
-json=f.readlines.to_s
-f.close
+json = IO.popen(cmdLine) do |io|
+  io.read
+end
 
 cmdLineResult=$?
 
