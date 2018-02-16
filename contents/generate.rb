@@ -17,20 +17,20 @@ end
 
 cmdLineResult=$?
 
-if cmdLineResult != 0 
+if cmdLineResult != 0
    $stderr.puts "mco command line  #{cmdLine} failed (result code:  #{cmdLineResult})"
    exit 1
 end
 
 
-begin 
+begin
    inv = JSON.parse(json)
    raise "JSON parse error" if inv.nil?
 rescue
    $stderr.puts "Caught JSON parsing exception from command line: #{cmdLine}"
    exit 1
 end
- 
+
 if inv.length == 0
    $stderr.puts "command line: ${cmdLine} produced no data"
    exit 1
