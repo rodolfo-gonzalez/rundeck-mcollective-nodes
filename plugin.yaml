@@ -17,4 +17,4 @@ providers:
            title:  mcollective client utility command line
            description: the command line used to produce node resource json data
            required: true
-           default:  mco rpc rpcutil -j inventory
+           default:  sudo mco rpc rpcutil -j inventory
