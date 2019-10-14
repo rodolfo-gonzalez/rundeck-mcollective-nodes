@@ -43,22 +43,18 @@ $i = 0;
 while $i < inv.length do
    invEntry = inv[$i];
    sender = invEntry["sender"]
-   
+
    if invEntry["data"]["facts"].kind_of?(Hash) && invEntry["data"]["facts"].has_key?("ipaddress_eth0")
-      
+
       tags = (invEntry["data"]["classes"].kind_of?(Array) && invEntry["data"]["classes"].any? ? invEntry["data"]["classes"].join(",") : '')
       hostname = ( invEntry["data"]["facts"].has_key?("ipaddress_eth0")? invEntry["data"]["facts"]["ipaddress_eth0"] : '')
       architecture = ( invEntry["data"]["facts"].has_key?("architecture")? invEntry["data"]["facts"]["architecture"] : '')
       osfamily = ( invEntry["data"]["facts"].has_key?("osfamily")? invEntry["data"]["facts"]["osfamily"] : '')
       kernel = ( invEntry["data"]["facts"].has_key?("kernel")? invEntry["data"]["facts"]["kernel"] : '')
       kernelrelease = ( invEntry["data"]["facts"].has_key?("kernelrelease")? invEntry["data"]["facts"]["kernelrelease"] : '')
-      username = ( invEntry["data"]["facts"].has_key?("id")? invEntry["data"]["facts"]["id"] : '')
       operatingsystemrelease = ( invEntry["data"]["facts"].has_key?("operatingsystemrelease")? invEntry["data"]["facts"]["operatingsystemrelease"] : '')
+      username = 'rundeck'
 
-      if username == ""
-         username="root"
-      end
-   
       print "   <node name=\"#{sender}\" description=\"#{osfamily} #{operatingsystemrelease}\" tags=\"#{tags}\" hostname=\"#{hostname}\"  osArch=\"#{architecture}\" osFamily=\"#{osfamily}\" osName=\"#{kernel}\" osVersion=\"#{kernelrelease}\" username=\"#{username}\"/>\n"
    end
 
